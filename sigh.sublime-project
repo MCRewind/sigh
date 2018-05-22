@@ -2,7 +2,33 @@
 	"folders":
 	[
 		{
-			"path": "."
-		}
-	]
+			"path": "./src",
+		},
+		{
+			"path": ".",
+			"name": "project",
+			"folder_exclude_patterns": ["bazel-*", "src"],
+		},
+	],
+	"settings":
+    {
+        "tab_size": 4
+    },
+    "build_systems":
+    [
+        {
+            "name": "Bazel",
+            "working_dir" : "$project_path",
+            "cmd": "C:/Bazel/bazel.exe build //src:sigh",
+            "variants":
+			[
+				{
+					"name": "Run",
+					"working_dir" : "$project_path/bazel-bin/src/",
+					"cmd": ["start", "cmd", "/k", "sigh.exe"],
+            		"shell": true,
+				}
+			]
+        }
+    ]
 }
